@@ -21,6 +21,15 @@ module.exports = {
         pathRewrite: {
           '^/migu': ''
         }
+      },
+
+      '/maizuo': {
+        // 目标地址，只写主机
+        target: 'https://m.maizuo.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/maizuo': ''
+        }
       }
     }
   }

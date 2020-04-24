@@ -7,6 +7,8 @@ import Category from '../views/Category'
 import Detail from '../views/Detail'
 import Hello from '../views/Hello'
 import Profile from '../views/Profile'
+import City from '../views/City'
+import Search from '../views/Search'
 
 Vue.use(VueRouter)
 
@@ -39,6 +41,8 @@ const router = new VueRouter({
       ]
     },
     { path: '/detail', component: Detail },
+    { path: '/city', component: City },
+    { path: '/search', component: Search },
     { path: '/', redirect: '/hello' }
   ]
 })

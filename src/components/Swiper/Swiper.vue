@@ -63,18 +63,10 @@ export default {
 
   .swiper-pagination-bullet {
     opacity: 1;
-    vertical-align: middle;
-    width: 6px;
-    height: 6px;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: hsla(0, 0%, 100%, 0.7);
+    background-color: #fff;
   }
   .swiper-pagination-bullet-active {
-    width: 20px;
-    height: 10px;
-    background: url("../../assets/icon/banner-btn.png") no-repeat;
-    background-size: 100%;
+    background: #ff5777;
   }
 }
 </style>
