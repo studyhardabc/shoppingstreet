@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store'
 
 import Home from '../views/Home'
 import Cart from '../views/Cart'
@@ -45,6 +46,20 @@ const router = new VueRouter({
     { path: '/search', component: Search },
     { path: '/', redirect: '/hello' }
   ]
+})
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  if (!store.state.city.curCity && to.path !== '/city') {
+    next({
+      path: '/city',
+      query: {
+        redirect: to.fullPath
+      }
+    })
+  } else {
+    next()
+  }
 })
 
 export default router

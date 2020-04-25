@@ -3,7 +3,7 @@
 
     <!-- 顶部内容 -->
     <NavBar class="nav-bar" title="购物街">
-      <template #left><div @click="getCity">城市</div></template>
+      <template #left><div @click="getCity">{{ curCityName || '城市' }}</div></template>
       <template #center></template>
       <template #right><i class="iconfont icon--search1" @click="getSearch"></i></template>
     </NavBar>
@@ -30,6 +30,8 @@ import Recommend from './components/Recommend'
 
 import { banner } from '@/api/Home'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Home',
 
@@ -48,6 +50,10 @@ export default {
       // 轮播图下面那个数据
       featureList: []
     }
+  },
+
+  computed: {
+    ...mapGetters('city', ['curCityName'])
   },
 
   methods: {

@@ -1,11 +1,16 @@
 // 拆分出来的城市相关的仓库子模块
 import { getCity } from '@/api/City'
 
+const city = sessionStorage.getItem('city')
+
 const state = {
-  CityList: []
+  CityList: [],
+  // 当前选择的城市 { cityId: 123, name: '深圳'}
+  curCity: city ? JSON.parse(city) : null
 }
 
 const getters = {
+  // 城市数据
   getcityList (state) {
     const result = []
     state.CityList.forEach(item => {
@@ -24,12 +29,23 @@ const getters = {
     return result.sort((a, b) => {
       return a.py.charCodeAt() - b.py.charCodeAt()
     })
+  },
+
+  // 当前点击的城市名字
+  curCityName (state) {
+    return state.curCity ? state.curCity.name : ''
   }
 }
 
 const mutations = {
   SET_CURCITY (state, payload) {
     state.CityList = payload
+  },
+
+  // 修改城市名字
+  GET_CURCITY (state, payload) {
+    state.curCity = payload
+    sessionStorage.setItem('city', JSON.stringify(state.curCity))
   }
 }
 
