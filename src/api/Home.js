@@ -6,3 +6,14 @@ export const banner = () => {
     method: 'GET'
   })
 }
+
+export const goodList = (type, page) => {
+  return request({
+    url: '/home/data',
+    method: 'GET',
+    params: {
+      type,
+      page
+    }
+  })
+}

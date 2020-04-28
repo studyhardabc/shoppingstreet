@@ -7,7 +7,7 @@
         >
           <img
             data-v-bf8cc8cc
-            :src="item.image"
+            v-lazy="item.image"
             alt
           />
           <div data-v-bf8cc8cc>{{ item.title }}</div>

@@ -1,6 +1,8 @@
 <template>
   <div class="poge-hello">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <Tabbar></Tabbar>
   </div>
 </template>
