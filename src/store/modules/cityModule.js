@@ -8,6 +8,7 @@ const state = {
   // 当前选择的城市 { cityId: 123, name: '深圳'}
   curCity: city ? JSON.parse(city) : null,
   AddGoods: []
+  // AddGoodslength: 0
 }
 
 const getters = {
@@ -35,6 +36,29 @@ const getters = {
   // 当前点击的城市名字
   curCityName (state) {
     return state.curCity ? state.curCity.name : ''
+  },
+
+  getAddGoodsLength (state) {
+    var num = null
+    state.AddGoods.forEach((item, index) => {
+      item.list.forEach((data, index) => {
+        num += data.num
+      })
+    })
+    return num
+  },
+
+  getAddGoodsAllprice (state) {
+    var price = null
+    state.AddGoods.forEach(item => {
+      item.list.forEach(item => {
+        if (item.data === true) {
+          price += (Number(item.price) * item.num) * 100
+          // price += Number(item.price) * 100
+        }
+      })
+    })
+    return price
   }
 }
 
@@ -73,6 +97,25 @@ const mutations = {
       } else {
         data.num += payload.num
       }
+    }
+  },
+
+  AddGoodsAlldata (state, payload) {
+    state.AddGoods.forEach(item => {
+      item.list.forEach(item => {
+        item.data = payload
+      })
+    })
+  },
+
+  AddGoodplus (state, payload) {
+    state.AddGoods[payload.i].list[payload.index].num++
+  },
+
+  AddGoodsub (state, payload) {
+    state.AddGoods[payload.i].list[payload.index].num--
+    if (state.AddGoods[payload.i].list[payload.index].num <= 1) {
+      state.AddGoods[payload.i].list[payload.index].num = 1
     }
   }
 }

@@ -366,6 +366,7 @@ export default {
       this.obj.timer = new Date().getTime()
       this.obj.shop = this.ShopInfoList.name
       this.obj.shoplogo = this.ShopInfoList.shopLogo
+      this.obj.data = false
       this.GET_AddGOODS(this.obj)
       Toast.success('加入购物车')
     }

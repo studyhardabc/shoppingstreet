@@ -41,7 +41,8 @@ export default {
 
 <style lang="scss" scoped>
 .goods {
-  width: 47%;
+  width: 125px;
+  height: 232px;
   padding-bottom: 40px;
   position: relative;
 }
