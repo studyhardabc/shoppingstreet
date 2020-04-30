@@ -10,6 +10,8 @@ import Hello from '../views/Hello'
 import Profile from '../views/Profile'
 import City from '../views/City'
 import Search from '../views/Search'
+import Register from '../views/Register'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 
@@ -44,6 +46,8 @@ const router = new VueRouter({
     { path: '/detail', component: Detail },
     { path: '/city', component: City },
     { path: '/search', component: Search },
+    { path: '/register', component: Register },
+    { path: '/login', component: Login },
     { path: '/', redirect: '/hello' }
   ]
 })

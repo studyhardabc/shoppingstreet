@@ -1,20 +1,17 @@
 <template>
   <div class="poge-profile">
-    <NavBar class="nav-bar" title="浩哥商城"></NavBar>
-
     <UserInfo></UserInfo>
+    <div class="box"></div>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar/NavBar'
 import UserInfo from './compinents/UserInfo'
 
 export default {
   name: 'Profile',
 
   components: {
-    NavBar,
     UserInfo
   }
 }
@@ -23,6 +20,7 @@ export default {
 <style lang="scss" scoped>
 .poge-profile {
   height: 100%;
+  background: #fd7e1b;
 }
 
 .nav-bar {
@@ -31,4 +29,11 @@ export default {
   font-weight: bold;
 }
 
+.box {
+  width: 100%;
+  position: fixed;
+  height: 100px;
+  bottom: 49px;
+  background: #f2f2f2;
+}
 </style>

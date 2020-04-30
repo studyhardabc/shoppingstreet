@@ -35,7 +35,13 @@
               <van-button size="mini" @click="AddGoodplus1(index, i)">+</van-button>
               <van-button size="mini" @click="AddGoodsub1(index, i)">-</van-button>
               <template #right>
-                <van-button square text="删除" type="danger" class="delete-button" @click="DeleteGoods(index, i)" />
+                <van-button
+                  square
+                  text="删除"
+                  type="danger"
+                  class="delete-button"
+                  @click="DeleteGoods(index, i)"
+                />
               </template>
             </van-swipe-cell>
           </template>
@@ -54,6 +60,13 @@
         <span>修改地址</span>
       </template>
     </van-submit-bar>
+
+    <van-empty
+      class="custom-image"
+      image="//img11.360buyimg.com/jdphoto/s180x180_jfs/t18163/292/540553659/74408/adeb7463/5a93c51cN3bb5e37b.png"
+      description="登录后可同步购物车商品"
+      v-show="CartShow"
+    />
   </div>
 </template>
 
@@ -69,7 +82,8 @@ import {
   Checkbox,
   CheckboxGroup,
   SubmitBar,
-  SwipeCell
+  SwipeCell,
+  Empty
 } from 'vant'
 
 import { mapState, mapGetters, mapMutations } from 'vuex'
@@ -81,9 +95,16 @@ Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(SubmitBar)
 Vue.use(SwipeCell)
+Vue.use(Empty)
 
 export default {
   name: 'Cart',
+
+  data () {
+    return {
+      CartShow: false
+    }
+  },
 
   components: {
     NavBar,
@@ -104,6 +125,12 @@ export default {
         return All
       },
       set () {}
+    }
+  },
+
+  watch: {
+    AddGoods () {
+      this.AddGoods.length === 0 ? this.CartShow = true : this.CartShow = false
     }
   },
 
@@ -145,6 +172,10 @@ export default {
       }
       this.AddGoods[i].list.splice(index, 1)
     }
+  },
+
+  created () {
+    this.AddGoods.length === 0 ? this.CartShow = true : this.CartShow = false
   }
 }
 </script>
@@ -197,5 +228,10 @@ export default {
 
 .van-swipe-cell {
   line-height: 40px;
+}
+
+.custom-image .van-empty__image {
+  width: 90px;
+  height: 90px;
 }
 </style>

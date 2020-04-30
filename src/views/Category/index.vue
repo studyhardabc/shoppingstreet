@@ -60,7 +60,7 @@ export default {
       tabContro1Show: false,
       taboffsetTop: 0,
       isLoad: false,
-      BackTopShow: true
+      BackTopShow: false
     }
   },
 
@@ -95,6 +95,7 @@ export default {
       this.getSubcategory(
         this.categoryList.list[this.categoryListIndex].maitKey
       )
+      this.getCategoryDetail(this.categoryList.list[this.categoryListIndex].miniWallkey, this.currentType)
     },
 
     // 请求选项卡数据
