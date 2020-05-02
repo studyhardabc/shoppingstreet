@@ -14,21 +14,27 @@ module.exports = {
         }
       },
 
-      '/migu': {
-        // 目标地址，只写主机
-        target: 'http://movie.miguvideo.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/migu': ''
-        }
-      },
-
       '/maizuo': {
         // 目标地址，只写主机
         target: 'https://m.maizuo.com',
         changeOrigin: true,
         pathRewrite: {
           '^/maizuo': ''
+        }
+      },
+
+      '/fm': {
+        target: 'https://www.missevan.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/fm': ''
+        }
+      },
+      '/live': {
+        target: 'https://fm.missevan.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/live': ''
         }
       }
     }
