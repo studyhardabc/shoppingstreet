@@ -4,7 +4,7 @@
       <div class="cover">
         <img
           :alt="item.soundstr"
-          :src="item.front_cover"
+          v-lazy="item.front_cover"
           :title="item.soundstr"
           class="lazy-image lazy-loaded cover-img"
         />

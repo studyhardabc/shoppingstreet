@@ -3,7 +3,7 @@
     <a class="Thumbnail list-drama" v-for="(item, index) in SearchList2.Datas || getSearchList" :key="index">
       <img
         :alt="item.name"
-        :src="item.cover"
+        v-lazy="item.cover"
         :title="item.name"
         class="lazy-image lazy-loaded cover"
       />

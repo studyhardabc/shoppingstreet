@@ -4,7 +4,7 @@
       <a class="search-user-block" href="https://www.missevan.com/5728218" v-for="(item, index) in SearchUserList.Datas" :key="index">
         <img
           :alt="item.username"
-          :src="item.avatar2"
+          v-lazy="item.avatar2"
           :title="item.username"
           class="lazy-image lazy-loaded user-avatar"
         />

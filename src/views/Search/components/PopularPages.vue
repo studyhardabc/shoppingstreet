@@ -13,7 +13,7 @@
 
       <upPage :SearchUserList="SearchUserList" v-if="getIndex === 1"></upPage>
 
-      <LivePage v-if="getIndex === 4"></LivePage>
+      <LivePage v-if="getIndex === 4" :liveList="liveList"></LivePage>
 
       <Footer></Footer>
     </div>
@@ -74,6 +74,13 @@ export default {
     },
 
     SearchUserList: {
+      type: Object,
+      default () {
+        return {}
+      }
+    },
+
+    liveList: {
       type: Object,
       default () {
         return {}

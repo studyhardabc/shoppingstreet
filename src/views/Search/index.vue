@@ -9,7 +9,7 @@
       <SearchResult v-show="SearchResultShow" :titleList="titleList" :title="title" @SuggestItem="SuggestItem"></SearchResult>
 
       <!-- 搜索结果页面 -->
-      <PopularPages :TabList="getSearchList.navs" :SearchList="SearchList" :getSearchList2="getSearchList2" :SearchUserList="upList" @getactiveIndex="getactiveIndex" v-show="isShow"></PopularPages>
+      <PopularPages :TabList="getSearchList.navs" :SearchList="SearchList" :getSearchList2="getSearchList2" :SearchUserList="upList" :liveList="liveList" @getactiveIndex="getactiveIndex" v-show="isShow"></PopularPages>
 
     </Scroll>
     <Footer class="box" v-show="!isShow"></Footer>
@@ -49,7 +49,8 @@ export default {
       data: '',
       upList: {},
       titleList: [],
-      title: ''
+      title: '',
+      liveList: {}
     }
   },
 
@@ -84,10 +85,10 @@ export default {
       })
     },
 
-    // 直播数据请求报错，未解决
     getactiveIndex (obj) {
       getLivePage(this.data).then(res => {
-        console.log(res) // 报错
+        // console.log(res)
+        this.liveList = res.info
       })
       if (obj.TabList === 5 || obj.index === 4) return
       getSearch(this.data, obj.TabList).then(res => {

@@ -4,20 +4,20 @@
       <a
         href="https://fm.missevan.com/live/136882339"
         class="Thumbnail live"
-        v-for="(item, index) in 10"
+        v-for="(item, index) in liveList.roomlist"
         :key="index"
       >
         <img
-          alt="不谈恋爱就去死"
-          src="//static.missevan.com/fmcovers/202004/28/71c61b743fc34aa4512c377be6a2c006.jpg"
-          title="不谈恋爱就去死"
+          :alt="item.name"
+          v-lazy="item.cover_url"
+          :title="item.name"
           class="lazy-image lazy-loaded cover"
         />
-        <div class="room-name">不谈恋爱就去死</div>
-        <div class="username">Cv怡方君_声演</div>
+        <div class="room-name">{{ item.name }}</div>
+        <div class="username">{{ item.creator_username }}</div>
         <div class="room-info">
-          <div class="accumulation">1390</div>
-          <div class="status open">正在直播</div>
+          <div class="accumulation">{{ item.statistics.popularity }}</div>
+          <div class="status" :class="{'open': item.statistics.popularity > 0}">{{ item.statistics.popularity > 0 ? '正在直播' : '暂无直播' }}</div>
         </div>
       </a>
     </div>
@@ -27,7 +27,16 @@
 
 <script>
 export default {
-  name: 'LivePage'
+  name: 'LivePage',
+
+  props: {
+    liveList: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  }
 }
 </script>
 
@@ -132,9 +141,9 @@ export default {
     from(rgba(0, 0, 0, 0.5)),
     to(transparent)
   );
-  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
-  background: -moz- oldlinear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
-  background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+  background: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  background: -moz- oldlinear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  background: -o-linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent);
 }
 .Thumbnail.live .room-info .accumulation {
@@ -156,6 +165,20 @@ export default {
   height: 9px;
   margin-right: 4px;
 }
+
+.Thumbnail.live .room-info .status:before {
+    background-image: url('https://s0.missevan.com/assets/m/images/build/sprite-icons-thumbnails@2x.c71cb7b7.png');
+    background-position: -43px -44px;
+    -webkit-background-size: 56px 55px;
+    -moz-background-size: 56px 55px;
+    background-size: 56px 55px;
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 9px;
+    margin-right: 4px;
+}
+
 .Thumbnail.live .room-info .status.open {
   background-color: #60c152;
 }

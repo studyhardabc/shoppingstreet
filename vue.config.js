@@ -6,11 +6,19 @@ module.exports = {
       // key: value
       //      key - 前缀
       //      value - 是跟 http-proxy-middleware 相同的一个配置对象
-      '/api': {
-        target: 'https://mhd.zhuishushenqi.com',
+      '/live': {
+        target: 'https://fm.missevan.com',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/live': ''
+        }
+      },
+
+      '/user': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/user': ''
         }
       },
 
@@ -28,13 +36,6 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/fm': ''
-        }
-      },
-      '/live': {
-        target: 'https://fm.missevan.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/live': ''
         }
       }
     }

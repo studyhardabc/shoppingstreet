@@ -1,6 +1,6 @@
 <template>
   <div class="poge-profile">
-    <UserInfo></UserInfo>
+    <UserInfo @register="register"></UserInfo>
     <div class="box"></div>
   </div>
 </template>
@@ -13,6 +13,12 @@ export default {
 
   components: {
     UserInfo
+  },
+
+  methods: {
+    register () {
+      this.$router.push('/login')
+    }
   }
 }
 </script>

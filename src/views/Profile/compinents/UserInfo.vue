@@ -51,7 +51,7 @@
               >
                 <span
                   style="text-overflow: ellipsis; overflow: hidden; line-height: 24px; white-space: nowrap;"
-                >设置淘宝昵称</span>
+                >{{ nickname }}</span>
               </div>
               <div
                 view-name="HImageView"
@@ -70,6 +70,7 @@
                   style="display:-webkit-box;display:-webkit-flex;display:flex;overflow:hidden;-webkit-flex:0 0 auto;flex:0 0 auto;width:20px;height:20px;"
                 >
                   <div
+                  @click="register"
                     style="width: 100%; height: 100%; background-image: url(&quot;https://gw.alicdn.com/tfs/TB1tcovekL0gK0jSZFxXXXWHVXa-54-54.png_48x48q90_.webp&quot;); background-repeat: no-repeat; background-position: center center; background-size: 100% 100%;"
                   ></div>
                 </div>
@@ -870,7 +871,19 @@
 
 <script>
 export default {
-  name: 'UserInfo'
+  name: 'UserInfo',
+
+  data () {
+    return {
+      nickname: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : '设置淘宝昵称'
+    }
+  },
+
+  methods: {
+    register () {
+      this.$emit('register')
+    }
+  }
 }
 </script>
 

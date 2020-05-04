@@ -2,18 +2,24 @@
   <div class="page-register">
     <div class="reg-form">
       <div class="reg-head">
-        <div class="title">手机号注册</div>
+        <div class="title">邮箱注册</div>
         <div class="sub-title">亲，欢迎注册淘宝账号</div>
       </div>
       <div class="email">
-        <input type="email" placeholder="请输入你的邮箱" />
+        <input type="email" placeholder="请输入你的邮箱" v-model="EmailValue"/>
       </div>
       <div class="tex">
-        <input type="text" placeholder="请输入校验码" />
-        <p>获取验证码</p>
+        <input type="text" placeholder="请输入校验码" v-model="CodeValue" />
+        <p @click="Code">获取验证码</p>
+      </div>
+      <div class="email">
+        <input type="text" placeholder="请输入你密码" v-model="PassWord" />
+      </div>
+      <div class="email">
+        <input type="text" placeholder="请输入用户名" v-model="NickName" />
       </div>
       <div class="fm-btn">
-        <button type="submit" tabindex="3" class="fm-button fm-submit password-login">同意协议并注册</button>
+        <button type="submit" tabindex="3" class="fm-button fm-submit password-login" @click="RegisterBtn">同意协议并注册</button>
       </div>
       <div class="reg-agreement">
         <p>
@@ -41,8 +47,51 @@
 </template>
 
 <script>
+import { getMailCode, getregister } from '@/api/user'
+
+import Vue from 'vue'
+import { Toast } from 'vant'
+
+Vue.use(Toast)
+
 export default {
-  name: 'Register'
+  name: 'Register',
+
+  data () {
+    return {
+      EmailValue: '',
+      CodeValue: null,
+      PassWord: '',
+      NickName: ''
+    }
+  },
+
+  methods: {
+    Code () {
+      getMailCode(this.EmailValue).then(res => {
+        // console.log(res)
+        if (res.code === 0) {
+          Toast.success(res.msg)
+        } else {
+          Toast.fail(res.msg)
+        }
+      })
+    },
+
+    RegisterBtn () {
+      getregister(this.EmailValue, this.PassWord, this.NickName, this.CodeValue).then(res => {
+        // console.log(res)
+        if (res.code === 0) {
+          Toast.success(res.msg)
+          setTimeout(() => {
+            this.$router.push('/login')
+          }, 1000)
+        } else {
+          Toast.fail(res.msg)
+        }
+      })
+    }
+  }
 }
 </script>
 
